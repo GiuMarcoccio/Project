@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Products - Giuseppe Abiti</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="Images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="Images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Images/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <script src="js/cookiemanager.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/catalog.js"></script>
+    <script>
+        let x = new ShoppingCart(getCookie('whoami'))
+        function updateProduct1() {
+            x.setNumOrdered("pumax", product1.value);
+            location.reload();
+        }
+        function updateProduct2() {
+            x.setNumOrdered("hrxShoes", product2.value);
+            location.reload();
+        }
+        function updateProduct3() {
+            x.setNumOrdered("benettonJoggers", product3.value);
+            location.reload();
+        }
+        function remove(code) {
+            x.setNumOrdered(code, 0)
+            location.reload();
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <img src="images/logo.png" width="200px" />
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li>
+                        <script>
+                            if (getCookie("flag") == "true")
+                                document.writeln(`<a href="logoff.html">Logoff</a>`);
+                            else
+                                document.writeln(`<a href="account.html">Login</a>`);
+                        </script>
+                    </li>
+                </ul>
+            </nav>
+            <a href="cart.html"><img src="images/cart.png" width="30px" height="30px" /></a>
+            <img src="images/menu.png" class="menu-icon" onclick="menutoggle()" />
+        </div>
+    </div>
+
+    <!-- Cart Items Details -->
+
+    <div class="small-container cart-page">
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+            <script>
+                var pumaqty = x.getItemQuantity("pumax");
+                var pumax = "pumax";
+                if (pumaqty != null) {
+                    document.writeln("          <tr>");
+                    document.writeln("              <td>");
+                    document.writeln("                  <div class='cart-info'>");
+                    document.writeln("                      <img src='images/buy-1.jpg'>");
+                    document.writeln("                      <div>");
+                    document.writeln("                          <p>Puma Red Men´s T-Shirt with Logo</p>");
+                    document.writeln("                          <small>Price: $50.00</small>");
+                    document.writeln("                          <br>");
+                    document.writeln("                          <a href='#' onclick=remove('" + pumax + "') >Remove</a>");
+                    document.writeln("                      </div>");
+                    document.writeln("                  </div>");
+                    document.writeln("              </td>");
+                    document.writeln("              <td><input type='number' id='product1' value='" + pumaqty + "' onchange='updateProduct1();' /></td>");
+                    document.writeln("              <td>$" + (pumaqty * 50.00) + "</td>");
+                    document.writeln("          </tr>");
+                }
+
+                var hrxShoesqty = x.getItemQuantity("hrxShoes");
+                var hrxShoes = "hrxShoes";
+                if (hrxShoesqty != null) {
+                    document.writeln("<tr>");
+                    document.writeln("    <td>");
+                    document.writeln("        <div class='cart-info'>");
+                    document.writeln("            <img src='images/buy-2.jpg'>");
+                    document.writeln("            <div>");
+                    document.writeln("                <p>Shoes Panelled Lace-Up Sports Shoes</p>");
+                    document.writeln("                <small>Price: $75.00</small>");
+                    document.writeln("                <br>");
+                    document.writeln("                <a href='#' onclick=remove('" + hrxShoes + "') >Remove</a>");
+                    document.writeln("            </div>");
+                    document.writeln("        </div>");
+                    document.writeln("    </td>");
+                    document.writeln("    <td><input type='number' id='product2' value='" + hrxShoesqty + "' onchange='updateProduct2();' /></td>");
+                    document.writeln("    <td>$" + (hrxShoesqty * 75.00) + "</td>");
+                    document.writeln("</tr>");
+                }
+                
+                var benettonJoggersqty = x.getItemQuantity("benettonJoggers");
+                var benettonJoggers = "benettonJoggers";
+                if (benettonJoggersqty != null) {
+                    document.writeln("<tr>");
+                    document.writeln("    <td>");
+                    document.writeln("        <div class='cart-info'>");
+                    document.writeln("            <img src='images/buy-3.jpg'>");
+                    document.writeln("            <div>");
+                    document.writeln("                <p>Benetton Men Grey Solid Pure Cotton Joggers</p>");
+                    document.writeln("                <small>Price: $65.00</small>");
+                    document.writeln("                <br>");
+                    document.writeln("                <a href='#' onclick=remove('" + benettonJoggers + "') >Remove</a>");
+                    document.writeln("            </div>");
+                    document.writeln("        </div>");
+                    document.writeln("    </td>");
+                    document.writeln("    <td><input type='number' id='product3' value='" + benettonJoggersqty + "' onchange='updateProduct3();' /></td>");
+                    document.writeln("    <td>$" + (benettonJoggersqty * 65.00) + "</td>");
+                    document.writeln("</tr>");
+                }
+            </script>
+        </table>
+
+        <div class="total-price">
+            <script>			
+                document.writeln("<table>");
+                document.writeln("  <tr>");
+                document.writeln("  <td>Subtotal</td>");
+                document.writeln("  <td>$"+x.getTotalCost()+"</td>");
+                document.writeln("                </tr>");
+                document.writeln("                <tr>");
+                document.writeln("                    <td>Tax</td>");
+                document.writeln("                    <td>$"+(x.getTotalCost()*.1)+"</td>");
+                document.writeln("                </tr>");
+                document.writeln("                <tr>");
+                document.writeln("                    <td>Total</td>");
+                document.writeln("  <td>$"+x.addTax()+"</td>");
+                document.writeln("                </tr>");
+                document.writeln("            </table>");
+                 </script>
+        </div>
+    </div>
+
+
+
+    <!-- -------- footer ------- -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <p>Download App for Android and ios mobile phone.</p>
+                    <div class="app-logo">
+                        <img src="images/play-store.png">
+                        <img src="images/app-store.png">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <img src="images/logo-white.png">
+                    <p>Our Purpose Is To Sustainably Make the Pleasure and Benefits of Sports Accessible to the Many.
+                    </p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li>Coupons</li>
+                        <li>Blog Post</li>
+                        <li>Return Policy</li>
+                        <li>Join Affiliate</li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow us</h3>
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        <li>Instagram</li>
+                        <li>Youtube</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Copyright 2021 - Giuseppe Marcoccio</p>
+        </div>
+    </div>
+
+    <!-- js for toggle menu -->
+    <script>
+        var MenuItems = document.getElementById("MenuItems");
+
+        MenuItems.style.maxHeight = "0px";
+
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == "0px")
+                MenuItems.style.maxHeight = "200px";
+            else
+                MenuItems.style.maxHeight = "0px"
+        }
+    </script>
+</body>
+
+</html>
